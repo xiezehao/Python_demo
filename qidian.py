@@ -36,8 +36,8 @@ def getDetail(url):
     
         
         
-url='https://www.qidian.com/rank/yuepiao?style=1&page=1'
-for i in range(1,6):
+url='https://www.qidian.com/rank/yuepiao?style=1&page={}'
+for i in range(1,2):
     getDetail(url.format(i))
 #print(len(dataSoup))
 pandas.DataFrame(dataSoup)
