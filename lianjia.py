@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import time
 
 dataSoup=[]
 def getDataList(url):
@@ -8,6 +9,7 @@ def getDataList(url):
     soup = BeautifulSoup(res.text,'html.parser')
     items = soup.select('.sellListContent li')
     if(len(items)>0):
+        print(res.url)
         for item in items:
             img_link=item.select(".lj-lazy")[0]["src"]
             title=item.select(".title a")[0].text
@@ -28,8 +30,9 @@ def getDataList(url):
                 "unitPrice":unitPrice,
             })
     else:
-        print("重新验证:"+url)
+        print("重新验证:"+url+res.headers)
     
+    time.sleep(5)
 
 url="https://gz.lianjia.com/ershoufang/pg{}/"
 for i in range(1,5):
